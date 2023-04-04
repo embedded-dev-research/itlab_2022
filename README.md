@@ -1,2 +1,2 @@
 # itlab_2022
-## Optimization of Computer Vision Algorithms on ARM Architecture Processors
+## Low-level optimization of computer vision algorithms on ARM architectures
