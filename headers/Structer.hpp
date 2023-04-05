@@ -11,7 +11,7 @@ public:
     int height;
     int width;
 
-    Mtrx(int height_m = 0, int width_m = 0, ValType element = 0);
+    Mtrx(int height_m, int width_m, ValType element = 0);
     Mtrx(const Mtrx& mtrx_m);                                                       // copy constructor
     Mtrx(Mtrx&& mtrx_m);
 
@@ -40,12 +40,12 @@ public:
     friend std::ostream& operator<<(std::ostream& out, const Mtrx<T>& mtrx_m);
 };
 
-template <mode Mode>
-class Image : public Mtrx<Color<Mode>>
+template <layout Layout>
+class Image : public Mtrx<Color<Layout>>
 {
 public:
-    Image(int height_m = 0, int width_m = 0, Color<Mode> color_m = 0)                // constructor
-        : Mtrx<Color<Mode>>(height_m, width_m, color_m) {}
+    Image(int height_m, int width_m, Color<Layout> color_m = 0)                // constructor
+        : Mtrx<Color<Layout>>(height_m, width_m, color_m) {}
 
     unsigned char* splitR();                                                         // split component 
     unsigned char* splitG();
@@ -197,8 +197,8 @@ std::ostream& operator<<(std::ostream& out, const Mtrx<T>& mtrx_m) {
 /// 
 /// 
 
-template <mode Mode>
-unsigned char* Image<Mode>::splitR() {
+template <layout Layout>
+unsigned char* Image<Layout>::splitR() {
     unsigned char* R = new unsigned char[this->height * this->width];
     for (int i = 0; i < this->height * this->width; i++) {
         R[i] = this->data[i].R();
@@ -206,8 +206,8 @@ unsigned char* Image<Mode>::splitR() {
     return R;
 } /*-------------------------------------------------------------------------*/
 
-template <mode Mode>
-unsigned char* Image<Mode>::splitG() {
+template <layout Layout>
+unsigned char* Image<Layout>::splitG() {
     unsigned char* G = new unsigned char[this->height * this->width];
     for (int i = 0; i < this->height * this->width; i++) {
         G[i] = this->data[i].G();
@@ -215,8 +215,8 @@ unsigned char* Image<Mode>::splitG() {
     return G;
 } /*-------------------------------------------------------------------------*/
 
-template <mode Mode>
-unsigned char* Image<Mode>::splitB() {
+template <layout Layout>
+unsigned char* Image<Layout>::splitB() {
     unsigned char* B = new unsigned char[this->height * this->width];
     for (int i = 0; i < this->height * this->width; i++) {
         B[i] = this->data[i].B();
@@ -224,8 +224,8 @@ unsigned char* Image<Mode>::splitB() {
     return B;
 } /*-------------------------------------------------------------------------*/
 
-template <mode Mode>
-unsigned char* Image<Mode>::getMemory(int a, int b){
+template <layout Layout>
+unsigned char* Image<Layout>::getMemory(int a, int b){
     unsigned char* ret = new unsigned char[4*(b-a)];
     for(int i = 0; i < b-a; i++){
         unsigned char* tmp = this->data[i+a].getComp();

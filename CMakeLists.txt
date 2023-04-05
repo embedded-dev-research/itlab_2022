@@ -1,8 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.25.0)
 
-set(CMAKE_CXX_COMPILER "C:/MinGW/bin/g++.exe")
-set(CMAKE_C_COMPILER "C:/MinGW/bin/gcc.exe")
-
 project(computer_vision)
 
 include_directories(./headers)
