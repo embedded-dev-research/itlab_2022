@@ -3,10 +3,13 @@
 #include "data_render.hpp"
 #include "Function.hpp"
 #include "Color.hpp"
+#include "BMP.hpp"
 
 int main(){
-    Image<bgr> a(10, 10);
-    Image<rgb> b(10,10);
-    std::cout << a;
+    Image<rgb> a(10,10,Color<rgb>(123,124,5));
+    std::cout << a(9,4);
+
+    
+    
     return 0;
 }
