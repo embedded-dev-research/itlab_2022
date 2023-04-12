@@ -7,13 +7,14 @@
 - Working with Raspberry PI devices in practice.
 
 ## Software modules:
-### Module 1. 
+### Data rendering
 A module for generating data/reading images and storing images. The Image class is independent when reading format images `.bmp` (`OpenCV` library is used for other formats).
-### Module 2. 
+### Algorithms
 The algorithms module. At the moment, it contains the following matrix multiplication algorithms: classical multiplication,multiplication using OpenMP and Neon_intrinsics
-### Module 3. 
+### Tests
 The test module. In development...
-###Module 4. The Benchmarks module. In development...
+### Benchmarks 
+The Benchmarks module. In development...
 
 ## Clone the repo
 `git clone https://github.com/embedded-dev-research/itlab_2022.git` 
