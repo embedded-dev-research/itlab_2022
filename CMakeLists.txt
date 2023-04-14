@@ -4,10 +4,9 @@ project(computer_vision)
 
 include_directories(./headers)
 
-set(HRD headers/BMP.hpp)
-set(SRC sources/BMP.cpp)
-
-add_library(func_algo ${HDR} ${SRC})
+set(HDR1 headers/Function.hpp)
+set(SRC1 sources/Function.cpp)
+add_library(func_algo1 ${HDR1} ${SRC1})
 
 find_package(OpenMP)
 if(OpenMP_FOUND)
@@ -20,4 +19,4 @@ else()
 endif()
 
 add_executable(computer_vision main.cpp ./headers/Structer.hpp ./headers/data_render.hpp ./headers/Color.hpp ./headers/BMP.hpp)
-target_link_libraries(computer_vision func_algo)
+target_link_libraries(computer_vision func_algo1)

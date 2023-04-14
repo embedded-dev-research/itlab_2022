@@ -55,33 +55,5 @@ void check_color_header(BMPColorHeader& bmp_color_header) {
         throw std::runtime_error("Unexpected color space type! The program expects sRGB values");
     }
 }
-/*
-struct BMP {
-    BMPFileHeader file_header;
-    BMPInfoHeader bmp_info_header;
-    BMPColorHeader bmp_color_header;
-    std::vector<uint8_t> data;
-
-    BMP(const char* fname) {    read(fname);    }
-    BMP(int32_t width, int32_t height, bool has_alpha = true);
-    
-    void read(const char* fname);
-    void write(const char* fname);
-    void fill_region(uint32_t x0, uint32_t y0, uint32_t w, uint32_t h, uint8_t B, uint8_t G, uint8_t R, uint8_t A);
-    
-        
-private:
-    uint32_t row_stride{ 0 };
-
-    void write_headers(std::ofstream& of);
-    void write_headers_and_data(std::ofstream& of);
-
-    // Add 1 to the raw_stride until it is divisible with align_stride
-    uint32_t make_stride_aligned(uint32_t align_stride);
-
-    // Check if the pixel data is stored as BGRA and if the color space type is sRGB
-    void check_color_header(BMPColorHeader& bmp_color_header);
-};
-*/
 #pragma pack(pop)
 #endif
