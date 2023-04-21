@@ -7,7 +7,7 @@
 - Working with Raspberry PI devices in practice.
 
 ## Software modules:
-### Data rendering
+### Data generating
 A module for generating data/reading images and storing images. The Image class is independent when reading format images `.bmp` (`OpenCV` library is used for other formats).
 ### Algorithms
 The algorithms module. At the moment, it contains the following matrix multiplication algorithms: classical multiplication,multiplication using OpenMP and Neon_intrinsics

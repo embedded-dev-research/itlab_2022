@@ -2,10 +2,14 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.25.0)
 
 project(computer_vision)
 
-include_directories(./headers)
+include_directories(./generating_data/headers ./algorithms/headers ./tests/headers ./benchmarks/headers)
 
-set(HDR1 headers/Function.hpp)
-set(SRC1 sources/Function.cpp)
+set(HDR algorithms/headers/function.hpp)
+set(SRC algorithms/sources/function.cpp)
+add_library(func_algo ${HDR} ${SRC})
+
+set(HDR1 benchmarks/headers/timer.hpp)
+set(SRC1 benchmarks/sources/timer.cpp)
 add_library(func_algo1 ${HDR1} ${SRC1})
 
 find_package(OpenMP)
@@ -18,5 +22,6 @@ else()
     message(STATUS "Not link OpenMP")
 endif()
 
-add_executable(computer_vision main.cpp ./headers/Structer.hpp ./headers/data_render.hpp ./headers/Color.hpp ./headers/BMP.hpp)
+add_executable(computer_vision main.cpp)
+target_link_libraries(computer_vision func_algo)
 target_link_libraries(computer_vision func_algo1)
