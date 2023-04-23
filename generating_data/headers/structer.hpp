@@ -1,8 +1,8 @@
 #ifndef _MTRX_
 #define _MTRX_
 
-#include "BMP.hpp"
-#include "Color.hpp"
+#include "bmp.hpp"
+#include "color.hpp"
 
 template <typename ValType>
 class Mtrx {
