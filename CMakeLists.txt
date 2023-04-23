@@ -2,15 +2,18 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.25.0)
 
 project(computer_vision)
 
-include_directories(./generating_data/headers ./algorithms/headers ./tests/headers ./benchmarks/headers)
+include_directories(./generating_data/headers)
+include_directories(./algorithms/headers)
+include_directories(./tests/headers)
+include_directories(./benchmarks/headers)
 
-set(HDR algorithms/headers/function.hpp)
-set(SRC algorithms/sources/function.cpp)
-add_library(func_algo ${HDR} ${SRC})
+set(ALGORITHMS_HDR algorithms/headers/function.hpp)
+set(ALGORITHMS_SRC algorithms/sources/function.cpp)
+add_library(func_algo ${ALGORITHMS_HDR} ${ALGORITHMS_SRC})
 
-set(HDR1 benchmarks/headers/timer.hpp)
-set(SRC1 benchmarks/sources/timer.cpp)
-add_library(func_algo1 ${HDR1} ${SRC1})
+set(BENCHMARK_HDR benchmarks/headers/timer.hpp)
+set(BENCHMARK_SRC benchmarks/sources/timer.cpp)
+add_library(func_bench ${BENCHMARK_HDR} ${BENCHMARK_SRC})
 
 find_package(OpenMP)
 if(OpenMP_FOUND)
@@ -24,4 +27,4 @@ endif()
 
 add_executable(computer_vision main.cpp)
 target_link_libraries(computer_vision func_algo)
-target_link_libraries(computer_vision func_algo1)
+target_link_libraries(computer_vision func_bench)

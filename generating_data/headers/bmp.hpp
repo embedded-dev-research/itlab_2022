@@ -56,4 +56,4 @@ void check_color_header(BMPColorHeader& bmp_color_header) {
     }
 }
 #pragma pack(pop)
-#endif
+#endif  // __BMP__

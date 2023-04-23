@@ -321,4 +321,4 @@ void Image<bgr>::readBMP(const char* fname) {
         throw std::runtime_error("Unable to open the input image file");
     }
 }
-#endif
+#endif  // _MTRX_
