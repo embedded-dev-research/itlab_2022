@@ -18,5 +18,5 @@ else()
     message(STATUS "Not link OpenMP")
 endif()
 
-add_executable(computer_vision main.cpp ./headers/Structer.hpp ./headers/data_render.hpp ./headers/Color.hpp ./headers/BMP.hpp)
+add_executable(computer_vision main.cpp ./headers/Structer.hpp ./headers/gen_rand_data.hpp ./headers/Color.hpp ./headers/BMP.hpp)
 target_link_libraries(computer_vision func_algo1)
