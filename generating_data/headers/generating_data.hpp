@@ -1,8 +1,8 @@
 #ifndef _DATA_RENDER_
 #define _DATA_RENDER_
 
-#include <random>
 #include <ctime>
+#include <random>
 
 namespace data_render {
 template <typename T>

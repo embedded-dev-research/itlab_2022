@@ -1,9 +1,9 @@
 ﻿#ifndef _TIMER_
 #define _TIMER_
 
-#include <iostream>
-#include <chrono>
 #include <omp.h>
+#include <chrono>
+#include <iostream>
 
 class Timer {
  private:

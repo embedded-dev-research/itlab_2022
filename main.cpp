@@ -1,8 +1,8 @@
-#include <iostream>
-#include "structer.hpp"
-#include "function.hpp"
-#include "benchmark.hpp"
 #include <arm_neon.h>
+#include <iostream>
+#include "benchmark.hpp"
+#include "function.hpp"
+#include "structer.hpp"
 
 void print_matrx(float32_t* A, int N, int M) {
   for (int i = 0; i < N; i++) {
