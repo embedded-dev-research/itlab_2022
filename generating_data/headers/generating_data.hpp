@@ -5,13 +5,12 @@
 #include <ctime>
 
 namespace data_render {
-    template <typename T>
-    void get_random(T& source, int size, int mmax = 256) {
-        srand(time(0));
+template <typename T>
+void get_random(T& source, int size, int mmax = 256) {
+  srand(time(0));
 
-        for (int i = 0; i < size; ++i)
-            source[i] = (unsigned char)(rand() % mmax);
-    }
+  for (int i = 0; i < size; ++i) source[i] = (unsigned char)(rand() % mmax);
 }
+}  // namespace data_render
 
 #endif  // _DATA_RENDER_
