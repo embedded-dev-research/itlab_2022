@@ -4,8 +4,8 @@
 #include <omp.h>
 #include <arm_neon.h>
 
-#define cllps 3
-#define thr 4
+#define cllps 1
+#define thr 1
 
 template <typename T>
 T multiplication_omp(const T& data1, const T& data2, int N, int M, int L) {

@@ -4,6 +4,11 @@
 #include "bmp.hpp"
 #include "color.hpp"
 
+#ifdef WITH_OPENCV2
+#include <opencv2/opencv.hpp>
+#endif  // WITH_OPENCV2
+
+
 template <typename ValType>
 class Mtrx {
 protected:
@@ -50,24 +55,28 @@ class Image : public Mtrx<Color<Layout>>
 public:
     Image(int height_m, int width_m, Color<Layout> color_m = 0)                // constructor
         : Mtrx<Color<Layout>>(height_m, width_m, color_m) {}
-    Image(const char* fname) 
+    Image(const char* fname)
         : Mtrx<Color<Layout>>()
     {
         readBMP(fname);
     }
 
     unsigned char* splitR();                                                         // split component R
-    unsigned char* splitG();                                                         // split component G 
+    unsigned char* splitG();                                                         // split component G
     unsigned char* splitB();                                                         // split component B
     unsigned char* getMemory(int a, int b);
     void readBMP(const char* fname);
+
+#ifdef WITH_OPENCV2
+    void readPicture(const char* fname);                                             // reading a three-channel bgr image, if Opencv is linked
+#endif  // WITH_OPENCV2
 };
 
-/// 
-/// 
+///
+///
 /// Mtrx
-/// 
-/// 
+///
+///
 
 template <typename ValType> //contructor
 Mtrx<ValType>::Mtrx(int height_m, int width_m, ValType element)
@@ -211,11 +220,11 @@ std::ostream& operator<<(std::ostream& out, const Mtrx<T>& mtrx_m) {
     return out;
 } /*-------------------------------------------------------------------------*/
 
-/// 
-/// 
+///
+///
 /// Image
-/// 
-/// 
+///
+///
 
 template <layout Layout>
 unsigned char* Image<Layout>::splitR() {
@@ -314,11 +323,36 @@ void Image<bgr>::readBMP(const char* fname) {
             }
             std::cout << "\n";
         }
-        
+
         file_header.file_size += height * width * count_channels;
     }
     else {
         throw std::runtime_error("Unable to open the input image file");
     }
 }
+
+#ifdef WITH_OPENCV2
+template <>
+void Image<bgr>::readPicture(const char* fname){
+    cv::Mat a = cv::imread(fname);
+    if(a.channels() == 3){
+	unsigned char* mat_data = a.data;
+	delete[] data;
+	height = a.rows;
+	width = a.cols;
+	data = new Color<bgr>[width * height];
+	for(int i = 0; i < height; i++){
+	    for(int j = 0; j < width; j++){
+		data[i*width + j].B() = mat_data[(i*width + j)*3];
+		data[i*width + j].G() = mat_data[(i*width + j)*3 + 1];
+		data[i*width + j].R() = mat_data[(i*width + j)*3 + 2];
+	    }
+	}
+    }
+    else{
+	std::cout << "Warning!!! Picture can`t be read as it is not three-channel" << std::endl;
+    }
+}
+
+#endif // WITH_OPENCV2
 #endif  // _MTRX_

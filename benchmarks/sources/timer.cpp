@@ -1,9 +1,10 @@
 #include "timer.hpp"
 
 Timer::Timer()
-    : strt(false)
+    : strt(true)
     , stp(false)
-    , duration(std::chrono::microseconds{0})    {}
+    , duration(std::chrono::microseconds{0})
+{    start();    }
 
 Timer::~Timer(){
     if(strt && !stp)
@@ -23,16 +24,12 @@ void Timer::stop() {
 } /*-------------------------------------------------------------------------*/
 
 double Timer::duration_s() {
-    if (!strt)
-        std::cout << "Warning!!! The timer did not start" << std::endl;
     if (!stp)
         std::cout << "Warning!!! The timer did not stop" << std::endl;
     return duration.count();
 } /*-------------------------------------------------------------------------*/
 
 double Timer::duration_ms() {
-    if (!strt)
-        std::cout << "Warning!!! The timer did not start" << std::endl;
     if (!stp)
         std::cout << "Warning!!! The timer did not stop" << std::endl;
     return duration.count() * 1000.0;
