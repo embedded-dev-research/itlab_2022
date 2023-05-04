@@ -14,7 +14,7 @@ jobs:
       run: echo Hello, world!
     - name: Install dependencies
       run: |
-        sudo apt-get install -y g++-aarch64-linux-gnu ninja-build cmake git
+        sudo apt-get install -y g++-aarch64-linux-gnu ninja-build cmake git wget
     - name: Download and unpack sources
       run: |
 	mkdir opencv && cd opencv
