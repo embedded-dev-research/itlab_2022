@@ -10,6 +10,8 @@ jobs:
     - uses: DoozyX/clang-format-lint-action@v0.15
       with:
         source: '.'
+    - name: this
+    - run: echo Hello, World!
     - name: Install dependencies
       run: |
         sudo apt-get install -y g++-aarch64-linux-gnu ninja-build cmake git opencv-data
