@@ -19,7 +19,9 @@ jobs:
       run: | 
         mkdir opencv && cd opencv
         wget -O opencv.zip https://github.com/opencv/opencv/archive/4.x.zip
-
+        unzip opencv.zip
+        cmake  ../opencv-4.x
+        cmake --build .
 #    - name: Build
 #      run: |
 #        mkdir build && cd build
