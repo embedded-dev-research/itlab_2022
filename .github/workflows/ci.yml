@@ -12,7 +12,7 @@ jobs:
         source: '.'
     - name: Install dependencies
       run: |
-        sudo apt-get install -y g++-aarch64-linux-gnu ninja-build cmake git
+        sudo apt-get install -y g++-aarch64-linux-gnu ninja-build cmake git opencv-data
     - name: Build
       run: |
         mkdir build && cd build
