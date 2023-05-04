@@ -28,6 +28,5 @@ int main() {
       b(matrix_multiply_2x2_neon_float, A, B, C, 600, 600, 600);
   b.run();
   b.info();
-
   return 0;
 }
