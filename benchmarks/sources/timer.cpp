@@ -17,7 +17,7 @@ void Timer::start() {
 
 void Timer::stop() {
   stp = true;
-  std::chrono::time_point<std::chrono::high_resolution_clock> m_EndPoint = 
+  std::chrono::time_point<std::chrono::high_resolution_clock> m_EndPoint =
       std::chrono::high_resolution_clock::now();
   duration = m_EndPoint - m_StartPoint;
 } /*-------------------------------------------------------------------------*/
