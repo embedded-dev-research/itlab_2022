@@ -180,8 +180,8 @@ Mtrx<T> operator*(const Mtrx<T>& mtrx_left, const Mtrx<T>& mtrx_right) {
   for (int i = 0; i < mtrx_left.height; i++) {
     for (int j = 0; j < mtrx_right.width; j++) {
       for (int k = 0; k < mtrx_left.width; k++) {
-        mtrx_result.data[i * mtrx_result.width + j] += 
-            mtrx_left.data[i * mtrx_left.width + k] * 
+        mtrx_result.data[i * mtrx_result.width + j] +=
+            mtrx_left.data[i * mtrx_left.width + k] *
             mtrx_right.data[k * mtrx_right.width + j];
       }
     }
@@ -196,8 +196,8 @@ Mtrx<T> Adamar(const Mtrx<T>& mtrx_left, const Mtrx<T>& mtrx_right) {
 
   for (int i = 0; i < mtrx_result.height; ++i) {
     for (int j = 0; j < mtrx_result.width; ++j) {
-      mtrx_result[i * mtrx_result.width + j] = 
-          mtrx_left[i * mtrx_left.width + j] * 
+      mtrx_result[i * mtrx_result.width + j] =
+          mtrx_left[i * mtrx_left.width + j] *
           mtrx_right[i * mtrx_right.width + j];
     }
   }
