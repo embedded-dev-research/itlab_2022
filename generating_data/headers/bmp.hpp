@@ -1,11 +1,12 @@
 #ifndef __BMP__
 #define __BMP__
 
-#include <fstream>
 #include <algorithm>
+#include <fstream>
 #include <iomanip>
-#include <vector>
 #include <iostream>
+#include <vector>
+
 
 #pragma pack(push, 1)
 struct BMPFileHeader {

@@ -1,8 +1,8 @@
 #ifndef _FUNCTION_
 #define _FUNCTION_
 
-#include <omp.h>
 #include <arm_neon.h>
+#include <omp.h>
 
 #define cllps 1
 #define thr 1

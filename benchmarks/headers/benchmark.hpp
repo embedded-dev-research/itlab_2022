@@ -1,14 +1,15 @@
 #ifndef _BENCHMARK_
 #define _BENCHMARK_
 
-#include <functional>
-#include <vector>
-#include <string>
-#include <iostream>
-#include "timer.hpp"
 #include <arm_neon.h>
+#include <functional>
+#include <iostream>
+#include <string>
+#include <vector>
 
-template <typename Func, typename ...Arg>
+#include "timer.hpp"
+
+template <typename Func, typename... Arg>
 class Benchmark {
  private:
   int m_count;                   // number of iterations of the measurement
@@ -25,23 +26,23 @@ class Benchmark {
 };
 
 
-template <typename Func, typename ...Arg>
+template <typename Func, typename... Arg>
 Benchmark<Func, Arg...>::Benchmark(Func func, Arg... args)
     : m_count(10), m_name("Some function"), exec_time(-1) {
   m_func = std::bind(func, args...);
 }
 
-template <typename Func, typename ...Arg>
+template <typename Func, typename... Arg>
 void Benchmark<Func, Arg...>::setIterations(int count) {
   m_count = count;
 }
 
-template <typename Func, typename ...Arg>
+template <typename Func, typename... Arg>
 void Benchmark<Func, Arg...>::setName(const std::string& name) {
   m_name = name;
 }
 
-template <typename Func, typename ...Arg>
+template <typename Func, typename... Arg>
 void Benchmark<Func, Arg...>::run() {
   double total_time = 0;
   for (int i = 0; i < m_count; i++) {
@@ -53,7 +54,7 @@ void Benchmark<Func, Arg...>::run() {
   exec_time = total_time / m_count;
 }
 
-template <typename Func, typename ...Arg>
+template <typename Func, typename... Arg>
 void Benchmark<Func, Arg...>::info() {
   std::cout << "  " << m_name << std::endl;
   std::cout << "===========================" << std::endl;

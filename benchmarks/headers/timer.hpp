@@ -5,9 +5,6 @@
 #include <chrono>
 #include <omp.h>
 
-//template <typename Func, typename ...Arg>
-//class Benchmark;
-
 class Timer {
  private:
   bool strt;  // timer start flag

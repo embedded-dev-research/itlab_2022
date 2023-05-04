@@ -79,7 +79,7 @@ class Image : public Mtrx<Color<Layout>> {
 
 template <typename ValType>  // contructor
 Mtrx<ValType>::Mtrx(int height_m, int width_m, ValType element)
-    : height(height_m), width(width_m){
+    : height(height_m), width(width_m) {
   data = new ValType[height * width];
   for (int i = 0; i < height; ++i) {
     for (int j = 0; j < width; ++j) {
@@ -90,7 +90,7 @@ Mtrx<ValType>::Mtrx(int height_m, int width_m, ValType element)
 
 template <typename ValType>  // copy constructor
 Mtrx<ValType>::Mtrx(const Mtrx<ValType>& mtrx_m)
-    : height(mtrx_m.height), width(mtrx_m.width){
+    : height(mtrx_m.height), width(mtrx_m.width) {
   data = new ValType[height * width];
 
   for (int i = 0; i < height; ++i) {
@@ -102,7 +102,7 @@ Mtrx<ValType>::Mtrx(const Mtrx<ValType>& mtrx_m)
 
 template <typename ValType>
 Mtrx<ValType>::Mtrx(Mtrx&& mtrx_m)
-    : height(mtrx_m.height), width(mtrx_m.width), data(mtrx_m.data){
+    : height(mtrx_m.height), width(mtrx_m.width), data(mtrx_m.data) {
   mtrx_m.data = nullptr;
 } /*-------------------------------------------------------------------------*/
 
@@ -135,7 +135,7 @@ Mtrx<ValType>& Mtrx<ValType>::operator=(Mtrx<ValType>&& mtrx_m) {
 
 template <typename ValType>
 const ValType& Mtrx<ValType>::operator[](int position_m) const {
-   return data[position_m];
+  return data[position_m];
 } /*-------------------------------------------------------------------------*/
 
 template <typename ValType>
@@ -196,7 +196,9 @@ Mtrx<T> Adamar(const Mtrx<T>& mtrx_left, const Mtrx<T>& mtrx_right) {
 
   for (int i = 0; i < mtrx_result.height; ++i) {
     for (int j = 0; j < mtrx_result.width; ++j) {
-      mtrx_result[i * mtrx_result.width + j] = mtrx_left[i * mtrx_left.width + j] * mtrx_right[i * mtrx_right.width + j];
+      mtrx_result[i * mtrx_result.width + j] = 
+          mtrx_left[i * mtrx_left.width + j] * 
+          mtrx_right[i * mtrx_right.width + j];
     }
   }
 
