@@ -13,8 +13,13 @@ jobs:
     - name: Install dependencies
       run: |
         sudo apt-get install -y g++-aarch64-linux-gnu ninja-build
+	sudo apt-get install -y cmake
+	sudo apt-get install -y git
     - name: Build
       run: |
+	git clone https://github.com/opencv/opencv.git
+	git -C opencv checkout 4.x
+
         mkdir build && cd build
         cmake -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -GNinja ..
         cmake --build . -j$(nproc)
