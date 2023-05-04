@@ -7,7 +7,6 @@
 #include <iostream>
 #include <vector>
 
-
 #pragma pack(push, 1)
 struct BMPFileHeader {
   uint16_t file_type{0x4D42};

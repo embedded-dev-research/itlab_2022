@@ -2,6 +2,7 @@
 #define _BENCHMARK_
 
 #include <arm_neon.h>
+
 #include <functional>
 #include <iostream>
 #include <string>
@@ -24,7 +25,6 @@ class Benchmark {
   void run();                             // launch benchmark
   void info();                            // output of benchmark information
 };
-
 
 template <typename Func, typename... Arg>
 Benchmark<Func, Arg...>::Benchmark(Func func, Arg... args)
