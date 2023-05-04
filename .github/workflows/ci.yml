@@ -22,7 +22,7 @@ jobs:
         git -C opencv checkout 4.x
         mkdir -p build && cd build
         cmake ../opencv
-        ninja
+        make -j4
 #    - name: Build
 #      run: |
 #        mkdir build && cd build
