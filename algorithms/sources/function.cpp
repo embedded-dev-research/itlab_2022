@@ -1,6 +1,6 @@
 #include "function.hpp"
 
-void matrix_multiply_4x4_neon_float(float32_t* A, float32_t* B, float32_t* C, 
+void matrix_multiply_4x4_neon_float(float32_t* A, float32_t* B, float32_t* C,
                                     int N, int M, int L) {
   int A_indx;
   int B_indx;
@@ -102,8 +102,8 @@ void matrix_multiply_4x4_neon_float(float32_t* A, float32_t* B, float32_t* C,
   }
 }
 
-void matrix_multiply_2x2_neon_float(float32_t* A, float32_t* B, float32_t* C, 
-				   int N, int M, int L) {
+void matrix_multiply_2x2_neon_float(float32_t* A, float32_t* B, float32_t* C,
+                                    int N, int M, int L) {
   int A_indx;
   int B_indx;
   int C_indx;

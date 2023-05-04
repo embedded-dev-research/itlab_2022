@@ -8,7 +8,6 @@
 #include <opencv2/opencv.hpp>
 #endif  // WITH_OPENCV2
 
-
 template <typename ValType>
 class Mtrx {
  protected:
