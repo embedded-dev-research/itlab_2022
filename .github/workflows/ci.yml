@@ -10,21 +10,11 @@ jobs:
     - uses: DoozyX/clang-format-lint-action@v0.15
       with:
         source: '.'
-    - name: Run a one-line script
-      run: echo Hello, world!
     - name: Install dependencies
       run: |
-        sudo apt-get install -y g++-aarch64-linux-gnu ninja-build cmake git wget
-    - name: Download and unpack sources
-      run: | 
-        mkdir opencv && cd opencv
-        git clone https://github.com/opencv/opencv.git
-        git -C opencv checkout 4.x
-        mkdir -p build && cd build
-        cmake ../opencv
-        make -j4
-#    - name: Build
-#      run: |
-#        mkdir build && cd build
-#        cmake -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -GNinja ..
-#        cmake --build . -j$(nproc)
+        sudo apt-get install -y g++-aarch64-linux-gnu ninja-build
+    - name: Build
+      run: |
+        mkdir build && cd build
+        cmake -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -GNinja ..
+        cmake --build . -j$(nproc)
