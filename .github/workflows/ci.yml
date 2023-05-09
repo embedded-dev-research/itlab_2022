@@ -3,18 +3,47 @@ name: Build
 on: [push, pull_request]
 
 jobs:
-  ubuntu-build:
+  clang-format:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - uses: DoozyX/clang-format-lint-action@v0.15
       with:
         source: '.'
+  ubuntu-x86-cross-build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
     - name: Install dependencies
       run: |
         sudo apt-get install -y g++-aarch64-linux-gnu ninja-build
+    - name: Restore cached OpenCV
+      id: cache-opencv
+      uses: actions/cache/restore@v3
+      with:
+        path: |
+          opencv
+          build_opencv
+        key: ubuntu-x86-cross-build-opencv
+    - if: ${{ steps.cache-opencv.outputs.cache-hit != 'true' }}
+      name: Build OpenCV
+      continue-on-error: false
+      run: |
+        git clone https://github.com/opencv/opencv.git
+        cmake -S opencv -B build_opencv -G Ninja -DCMAKE_TOOLCHAIN_FILE=$PWD/opencv/platforms/linux/aarch64-gnu.toolchain.cmake
+        cmake --build build_opencv
+    - name: Install OpenCV
+      run: |
+        cmake --build build_opencv -t install
     - name: Build
       run: |
         mkdir build && cd build
-        cmake -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -GNinja ..
+        cmake -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -GNinja -DOpenCV_DIR=$PWD/../build_opencv ..
         cmake --build . -j$(nproc)
+    - name: Cache OpenCV
+      uses: actions/cache@v3
+      with:
+        path: |
+          opencv
+          build_opencv
+        key: ubuntu-x86-cross-build-opencv
