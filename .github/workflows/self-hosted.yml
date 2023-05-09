@@ -1,0 +1,19 @@
+name: Self-hosted build
+
+on:
+  pull_request:
+    branches:
+    - main
+
+jobs:
+  ubuntu-aarch64-build:
+    runs-on:
+    - self-hosted
+    - rpi4
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: |
+        rm -rf build && mkdir build && cd build
+        cmake -GNinja ..
+        cmake --build . -j$(nproc)
