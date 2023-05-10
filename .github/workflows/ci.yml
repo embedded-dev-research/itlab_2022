@@ -38,10 +38,6 @@ jobs:
     - name: Build
       run: |
         mkdir build && cd build
-<<<<<<< HEAD
-        cmake -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -GNinja ..
-        cmake --build . -j$(nproc)
-=======
         cmake -DCMAKE_C_COMPILER=aarch64-linux-gnu-gcc -DCMAKE_CXX_COMPILER=aarch64-linux-gnu-g++ -GNinja -DOpenCV_DIR=$PWD/../build_opencv ..
         cmake --build . -j$(nproc)
     - name: Cache OpenCV
@@ -51,4 +47,3 @@ jobs:
           opencv
           build_opencv
         key: ubuntu-x86-cross-build-opencv
->>>>>>> 108cca27cfc2542f6e60866d940c48f2e3a1be49
