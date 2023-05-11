@@ -22,14 +22,14 @@ bool checkRange(const T& min, const T& max) {
 template <typename T, typename... Args>
 struct is_any_of {
   static constexpr bool value =
-   std::disjunction<std::is_same<T, Args>...>::value;
+      std::disjunction<std::is_same<T, Args>...>::value;
 };
 
 template <typename T>
 struct is_integral_t {
   static constexpr bool value =
-   std::is_integral<T>::value &&
-   !is_any_of<T, int8_t, uint8_t, char, bool>::value;
+      std::is_integral<T>::value &&
+      !is_any_of<T, int8_t, uint8_t, char, bool>::value;
 };
 
 template <typename T>
@@ -62,7 +62,7 @@ class Generator<T, typename std::enable_if<is_integral_t<T>::value>::type> {
   T getMax() noexcept(noexcept(dist.max())) { return dist.max(); }
 
   void setRange(const T& min, const T& max) {
-    if (!checkRange(min, max)) throw std::logic_error{ "min_range > max_range" };
+    if (!checkRange(min, max)) throw std::logic_error{"min_range > max_range"};
 
     dist = std::uniform_int_distribution<T>(min, max);
   }
@@ -89,7 +89,7 @@ class Generator<T, typename std::enable_if<is_float_point_t<T>::value>::type> {
 
   void setRange(const T& min, const T& max) {
     if (!checkRange(min, max)) throw std::logic_error{"min_range > max_range"};
-
+    
 	dist = std::uniform_real_distribution<T>(min, max);
   }
 
@@ -109,19 +109,21 @@ class Generator<T, typename std::enable_if<is_char_t<T>::value>::type> {
  public:
   Generator(const T& min, const T& max) : m_min_range{min}, m_max_range{max} {
     if (!checkRange(min, max)) throw std::logic_error{"min_range > max_range"};
-    }
+  }
 
   int8_t getMin() const noexcept { return m_min_range; }
   int8_t getMax() const noexcept { return m_max_range; }
 
   void setRange(const T& min, const T& max) {
-	if (!checkRange(min, max)) throw std::logic_error{"minRange > maxRange"};
+    if (!checkRange(min, max)) throw std::logic_error{"minRange > maxRange"};
 
 	m_min_range = min;
 	m_max_range = max;
   }
 
-  int8_t operator()() { return m_min_range + rand() % (m_max_range - m_min_range + 1); }
+  int8_t operator()() {
+    return m_min_range + rand() % (m_max_range - m_min_range + 1); 
+  }
 };
 
 _GEN_RAND_DATA_END
