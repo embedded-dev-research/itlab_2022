@@ -88,7 +88,9 @@ class Generator<T, typename std::enable_if<is_float_point_t<T>::value>::type> {
   float getMax() noexcept(noexcept(dist.max())) { return dist.max(); }
 
   void setRange(const T& min, const T& max) {
-    if (!checkRange(min, max)) throw std::logic_error{"min_range > max_range"};
+    if (!checkRange(min, max)) {
+	  throw std::logic_error{"min_range > max_range"};
+	}
     
     dist = std::uniform_real_distribution<T>(min, max);
   }
@@ -115,7 +117,9 @@ class Generator<T, typename std::enable_if<is_char_t<T>::value>::type> {
   int8_t getMax() const noexcept { return m_max_range; }
 
   void setRange(const T& min, const T& max) {
-    if (!checkRange(min, max)) throw std::logic_error{"minRange > maxRange"};
+    if (!checkRange(min, max)) {
+	  throw std::logic_error{"minRange > maxRange"};
+	}
 
     m_min_range = min;
     m_max_range = max;
