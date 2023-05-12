@@ -17,7 +17,7 @@ struct BMPFileHeader {
 };
 
 struct BMPInfoHeader {
-  uint32_t size = 0;
+  uint32_t size{0};
   int32_t width{0};
   int32_t height{0};
 
@@ -32,7 +32,7 @@ struct BMPInfoHeader {
 };
 
 struct BMPColorHeader {
-  uint32_t red_mask = 0x00ff0000;
+  uint32_t red_mask{0x00ff0000};
   uint32_t green_mask{0x0000ff00};
   uint32_t blue_mask{0x000000ff};
   uint32_t alpha_mask{0xff000000};
