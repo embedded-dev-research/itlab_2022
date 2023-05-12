@@ -84,7 +84,7 @@ class Generator<T, typename std::enable_if<is_float_point_t<T>::value>::type> {
     if (!checkRange(min, max)) {
       throw std::logic_error{"min_range > max_range"};
     }
-    
+
     dist = std::uniform_real_distribution<T>(min, max);
   }
 
