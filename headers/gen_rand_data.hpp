@@ -109,7 +109,7 @@ class Generator<T, typename std::enable_if<is_char_t<T>::value>::type> {
   int8_t getMin() const noexcept { return m_min_range; }
   int8_t getMax() const noexcept { return m_max_range; }
 
-  void setRange(const T& min, const T& max) { 
+  void setRange(const T& min, const T& max) {
     if (!checkRange(min, max)) {
       throw std::logic_error{"min_range > max_range"};
     }
