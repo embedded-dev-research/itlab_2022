@@ -21,4 +21,6 @@ jobs:
         cmake --build . -j$(nproc)
     - name: Run tests
       run: |
+        ls -l 
+        pwd
         ./tests/test_computer_vision
