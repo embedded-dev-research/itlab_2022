@@ -12,8 +12,13 @@ jobs:
     - rpi4
     steps:
     - uses: actions/checkout@v3
+    - name: Update submodules
+      run: git submodule update --init --recursive
     - name: Build
       run: |
         rm -rf build && mkdir build && cd build
         cmake -GNinja ..
         cmake --build . -j$(nproc)
+    - name: Run tests
+      run: |
+        ./build/tests/test_computer_vision
