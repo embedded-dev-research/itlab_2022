@@ -126,10 +126,10 @@ class Generator<T, typename std::enable_if<is_char_t<T>::value>::type> {
   }
 
   int8_t operator()() {
-    return m_min_range + rand() % (m_max_range - m_min_range + 1); 
+    return m_min_range + rand() % (m_max_range - m_min_range + 1);
   }
 };
 
 _GEN_RAND_DATA_END
 
-#endif // _GEN_RAND_DATA_
+#endif// _GEN_RAND_DATA_
