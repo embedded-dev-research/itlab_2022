@@ -19,4 +19,4 @@ jobs:
         rm -rf build && mkdir build && cd build
         cmake -GNinja ..
         cmake --build . -j$(nproc)
-        ./test_computer_vision
+        ./tests/test_computer_vision
