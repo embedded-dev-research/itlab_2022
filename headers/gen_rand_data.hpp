@@ -5,10 +5,7 @@
 #include <random>
 #include <stdexcept>
 
-#define _GEN_RAND_DATA_BEGIN namespace gen_rand_data {
-#define _GEN_RAND_DATA_END }
-
-_GEN_RAND_DATA_BEGIN
+namespace gen_rand_data {
 
 template <typename T>
 bool checkRange(const T& min, const T& max) {
@@ -123,6 +120,6 @@ class Generator<T, typename std::enable_if<is_char_t<T>::value>::type> {
   }
 };
 
-_GEN_RAND_DATA_END
+}  // namespace gen_rand_data
 
 #endif  // _GEN_RAND_DATA_
