@@ -41,7 +41,3 @@ if(OpenCV_FOUND)
 else()
     message(STATUS "Not link OpenCV")
 endif()
-
-target_link_libraries(computer_vision func_algo)
-target_link_libraries(computer_vision func_timer)
-

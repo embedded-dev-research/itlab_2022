@@ -2,21 +2,6 @@
 
 #include <iostream>
 
-#include "benchmark.hpp"
-#include "function.hpp"
-#include "structer.hpp"
-
-void print_matrx(float32_t* A, int N, int M) {
-  for (int i = 0; i < N; i++) {
-    for (int j = 0; j < M; j++) {
-      std::cout << A[i * M + j] << ' ';
-    }
-    std::cout << std::endl;
-  }
-}
-
-// using namespace cv;
-
 int main() {
   Image<bgr> a(1, 1);
   float32_t* A = new float32_t[360000];
