@@ -4,7 +4,7 @@
 #include "Color.hpp"
 #include "Function.hpp"
 #include "Structer.hpp"
-#include "data_render.hpp"
+#include "gen_rand_data.hpp"
 
 int main() {
   Image<rgb> a(10, 10, Color<rgb>(123, 124, 5));
