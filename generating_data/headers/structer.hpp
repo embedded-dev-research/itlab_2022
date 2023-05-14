@@ -1,8 +1,12 @@
 #ifndef _MTRX_
 #define _MTRX_
 
-#include "BMP.hpp"
-#include "Color.hpp"
+#include "bmp.hpp"
+#include "color.hpp"
+
+#ifdef WITH_OPENCV2
+#include <opencv2/opencv.hpp>
+#endif  // WITH_OPENCV2
 
 template <typename ValType>
 class Mtrx {
@@ -59,6 +63,11 @@ class Image : public Mtrx<Color<Layout>> {
   unsigned char* splitB();  // split component B
   unsigned char* getMemory(int a, int b);
   void readBMP(const char* fname);
+
+#ifdef WITH_OPENCV2
+  void readPicture(const char* fname);  // reading a three-channel bgr image, if
+                                        // Opencv is linked
+#endif                                  // WITH_OPENCV2
 };
 
 ///
@@ -126,7 +135,6 @@ Mtrx<ValType>& Mtrx<ValType>::operator=(Mtrx<ValType>&& mtrx_m) {
 template <typename ValType>
 const ValType& Mtrx<ValType>::operator[](int position_m) const {
   return data[position_m];
-
 } /*-------------------------------------------------------------------------*/
 
 template <typename ValType>
@@ -148,7 +156,9 @@ template <typename ValType>
 Mtrx<ValType> Mtrx<ValType>::operator*(const ValType& val) {
   Mtrx<ValType> res(*this);
   for (int i = 0; i < height; i++)
-    for (int j = 0; j < width; j++) res[i * width + j] *= val;
+    for (int j = 0; j < width; j++) {
+      res[i * width + j] *= val;
+    }
   return res;
 } /*-------------------------------------------------------------------------*/
 
@@ -319,4 +329,29 @@ void Image<bgr>::readBMP(const char* fname) {
     throw std::runtime_error("Unable to open the input image file");
   }
 }
-#endif
+
+#ifdef WITH_OPENCV2
+template <>
+void Image<bgr>::readPicture(const char* fname) {
+  cv::Mat a = cv::imread(fname);
+  if (a.channels() == 3) {
+    unsigned char* mat_data = a.data;
+    delete[] data;
+    height = a.rows;
+    width = a.cols;
+    data = new Color<bgr>[width * height];
+    for (int i = 0; i < height; i++) {
+      for (int j = 0; j < width; j++) {
+        data[i * width + j].B() = mat_data[(i * width + j) * 3];
+        data[i * width + j].G() = mat_data[(i * width + j) * 3 + 1];
+        data[i * width + j].R() = mat_data[(i * width + j) * 3 + 2];
+      }
+    }
+  } else {
+    std::cout << "Warning!!! Picture can`t be read as it is not three-channel"
+              << std::endl;
+  }
+}
+
+#endif  // WITH_OPENCV2
+#endif  // _MTRX_

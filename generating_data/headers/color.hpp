@@ -168,4 +168,4 @@ std::ostream& operator<<(std::ostream& out, const Color<layout::bgr>& color_m) {
   out << (int)color_m.B() << ',' << (int)color_m.G() << ',' << (int)color_m.R();
   return out;
 }
-#endif
+#endif  // _COLOR_

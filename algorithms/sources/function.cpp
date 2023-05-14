@@ -1,4 +1,4 @@
-#include "Function.hpp"
+#include "function.hpp"
 
 void matrix_multiply_4x4_neon_float(float32_t* A, float32_t* B, float32_t* C,
                                     int N, int M, int L) {
@@ -59,12 +59,10 @@ void matrix_multiply_4x4_neon_float(float32_t* A, float32_t* B, float32_t* C,
         C1 = vfmaq_laneq_f32(C1, B1, A1, 1);
         C1 = vfmaq_laneq_f32(C1, B2, A1, 2);
         C1 = vfmaq_laneq_f32(C1, B3, A1, 3);
-
         C2 = vfmaq_laneq_f32(C2, B0, A2, 0);
         C2 = vfmaq_laneq_f32(C2, B1, A2, 1);
         C2 = vfmaq_laneq_f32(C2, B2, A2, 2);
         C2 = vfmaq_laneq_f32(C2, B3, A2, 3);
-
         C3 = vfmaq_laneq_f32(C3, B0, A3, 0);
         C3 = vfmaq_laneq_f32(C3, B1, A3, 1);
         C3 = vfmaq_laneq_f32(C3, B2, A3, 2);

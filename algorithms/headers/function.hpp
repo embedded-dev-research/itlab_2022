@@ -4,8 +4,8 @@
 #include <arm_neon.h>
 #include <omp.h>
 
-#define cllps 3
-#define thr 4
+#define cllps 1
+#define thr 1
 
 template <typename T>
 T multiplication_omp(const T& data1, const T& data2, int N, int M, int L) {
@@ -28,4 +28,4 @@ void matrix_multiply_4x4_neon_float(float32_t* A, float32_t* B, float32_t* C,
 void matrix_multiply_2x2_neon_float(float32_t* A, float32_t* B, float32_t* C,
                                     int N, int M, int L);
 
-#endif
+#endif  // _FUNCTION_
