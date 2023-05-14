@@ -46,5 +46,4 @@ jobs:
         path: |
           opencv
           build_opencv
-          
         key: ubuntu-x86-cross-build-opencv
