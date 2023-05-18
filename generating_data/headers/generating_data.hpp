@@ -6,7 +6,6 @@
 #include "gen_rand_data.hpp"
 #include "structer.hpp"
 
-
 namespace gen_matr_type {
 template <typename T>
 using num_lim = std::numeric_limits<T>;
