@@ -21,6 +21,7 @@ class Mtrx {
   Mtrx(const Mtrx& mtrx_m);  // copy constructor
   Mtrx(Mtrx&& mtrx_m);
   ValType* DData() { return data; }
+  bool empty() const noexcept { return data == nullptr; }
 
   ~Mtrx() { delete[] data; }  // destructor
 
