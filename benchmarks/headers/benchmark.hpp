@@ -28,7 +28,7 @@ class Benchmark {
 
 template <typename Func, typename... Arg>
 Benchmark<Func, Arg...>::Benchmark(Func func, Arg... args)
-    : m_count(10), m_name("Some function"), exec_time(-1) {
+    : m_count(1), m_name("Some function"), exec_time(-1) {
   m_func = std::bind(func, args...);
 }
 
@@ -44,6 +44,13 @@ void Benchmark<Func, Arg...>::setName(const std::string& name) {
 
 template <typename Func, typename... Arg>
 void Benchmark<Func, Arg...>::run() {
+  try {
+    if (m_name == "Some function") throw(-1);
+  } catch (int except) {
+    std::cout << "Set the name of the function under test:"
+                 "<object>.setName(\"Function name\")"
+              << std::endl;
+  }
   double total_time = 0;
   for (int i = 0; i < m_count; i++) {
     Timer t;
