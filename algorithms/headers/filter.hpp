@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <cmath>
+
 #include "structer.hpp"
 
 int interval(int val, int mmin, int mmax) {
